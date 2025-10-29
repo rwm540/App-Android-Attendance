@@ -22,6 +22,7 @@ const getRoleDisplayName = (role: Role) => {
 const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
+  const [dataLoading, setDataLoading] = useState(false);
   const [members, setMembers] = useState<Member[]>([]);
   const [activeTab, setActiveTab] = useState<Tab>('attendance');
 
@@ -40,11 +41,14 @@ const App: React.FC = () => {
   }, [currentUser]);
   
   const fetchMembers = async () => {
+    setDataLoading(true);
     try {
       const fetchedMembers = await db.getMembers();
       setMembers(fetchedMembers);
     } catch (error) {
       console.error("Failed to fetch members", error);
+    } finally {
+      setDataLoading(false);
     }
   };
 
@@ -108,6 +112,14 @@ const App: React.FC = () => {
   }
   
   const renderContent = () => {
+    if (dataLoading) {
+      return (
+        <div className="flex items-center justify-center py-12">
+          <Spinner />
+        </div>
+      );
+    }
+
     switch (activeTab) {
       case 'attendance':
         return (

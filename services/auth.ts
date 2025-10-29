@@ -22,24 +22,24 @@ export const login = async (mobile: string, password: string): Promise<UserProfi
     
     // The RPC function is aliased to return camelCase fields directly
     const user = data[0] as UserProfile;
-    sessionStorage.setItem(SESSION_KEY, JSON.stringify(user));
+    localStorage.setItem(SESSION_KEY, JSON.stringify(user));
     
     return user;
 };
 
 /**
- * Logs out the current user by clearing the session storage.
+ * Logs out the current user by clearing the local storage.
  */
 export const logout = () => {
-    sessionStorage.removeItem(SESSION_KEY);
+    localStorage.removeItem(SESSION_KEY);
 };
 
 /**
- * Gets the current logged-in user from session storage.
+ * Gets the current logged-in user from local storage.
  * @returns The user profile or null if not logged in.
  */
 export const getCurrentUser = (): UserProfile | null => {
-    const userJson = sessionStorage.getItem(SESSION_KEY);
+    const userJson = localStorage.getItem(SESSION_KEY);
     if (!userJson) return null;
     try {
         return JSON.parse(userJson) as UserProfile;
