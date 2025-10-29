@@ -55,11 +55,16 @@ jobs:
         cd android
         ./gradlew bundleRelease
         
+    - name: Rename APK file
+      run: |
+        cd android/app/build/outputs/apk/debug
+        mv app-debug.apk attendance.apk
+        
     - name: Upload APK artifact
       uses: actions/upload-artifact@v4
       with:
-        name: android-apk
-        path: android/app/build/outputs/apk/debug/app-debug.apk
+        name: attendance-apk
+        path: android/app/build/outputs/apk/debug/attendance.apk
         
     - name: Upload AAB artifact
       uses: actions/upload-artifact@v4

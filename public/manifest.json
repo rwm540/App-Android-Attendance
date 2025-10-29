@@ -1,7 +1,7 @@
 {
-  "name": "attendace",
-  "short_name": "attendace",
-  "description": "Attendance management app",
+  "name": "حضور و غیاب باشگاه",
+  "short_name": "حضور و غیاب",
+  "description": "اپلیکیشن مدیریت حضور و غیاب باشگاه",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
