@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.attendance.app',
-  appName: 'حضور و غیاب',
+  appName: 'attendace',
   webDir: 'dist',
   server: {
     androidScheme: 'https'
